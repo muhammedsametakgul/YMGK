@@ -1,2 +1,2 @@
 # YMGK
-Trello -->[Trello](https://trello.com/b/jzWtBNmz/ymgk)
+[Trello](https://trello.com/b/jzWtBNmz/ymgk)
