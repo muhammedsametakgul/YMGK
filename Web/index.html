@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Uçak İçi Eğlence</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🎉 Hoş Geldiniz Küçük Yolcular ve Aileleri! 🎉</h1>
+      <p>Uçakta eğlenceli vakit geçirmek için harika içerikler sizi bekliyor!</p>
+    </header>
+
+    <main>
+      <div class="card" onclick="showInfo('oyunlar')">
+        <img src="https://img.icons8.com/fluency/96/000000/joystick.png" alt="Eğlenceli Oyunlar">
+        <h2>Eğlenceli Oyunlar</h2>
+      </div>
+
+      <div class="card" onclick="showInfo('bilgiler')">
+        <img src="https://img.icons8.com/fluency/96/000000/reading.png" alt="Uçak Bilgileri">
+        <h2>Uçak Bilgileri</h2>
+      </div>
+
+      <div class="card" onclick="showInfo('bulmacalar')">
+        <img src="https://img.icons8.com/fluency/96/000000/jigsaw-puzzle.png" alt="Bulmacalar">
+        <h2>Zeka Oyunları</h2>
+      </div>
+    </main>
+
+    <footer>
+      <p>✈️ Keyifli ve güvenli bir yolculuk dileriz! ✈️</p>
+    </footer>
+
+    <!-- Modal -->
+    <div id="infoModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeInfo()">&times;</span>
+        <p id="infoText">İçerik yükleniyor...</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
