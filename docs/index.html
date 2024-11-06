@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Uçak İçi Eğlence</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-logo">
+      <img src="company_logo.png" alt="Logo" class="logo"> 
+      <span class="site-name">Magic Wings</span>
+    </div>
+    <ul class="navbar-links">
+      <li><a href="index.html">Anasayfa</a></li>
+      <li><a href="about.html">Hakkımızda</a></li>
+      <li><a href="contact.html">İletişim</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <header>
+      <h1>🎉 Küçük Yolcular ve Aileleri Hoş Geldiniz! 🎉</h1>
+      <p>Uçakta eğlenceli vakit geçirmek için harika içerikler burada!</p>
+    </header>
+
+    <!-- Content Cards -->
+    <div class="content-grid">
+      <div class="content-card" onclick="showInfo('oyunlar')">
+        <img src="https://img.icons8.com/fluency/96/000000/joystick.png" alt="Eğlenceli Oyunlar">
+        <div class="card-content">
+          <h2>Eğlenceli Oyunlar</h2>
+          <p>Çocuklar için güvenli ve eğitici oyunlar sizi bekliyor!</p>
+        </div>
+      </div>
+
+      <div class="content-card" onclick="showInfo('bilgiler')">
+        <img src="https://img.icons8.com/fluency/96/000000/reading.png" alt="Uçak Bilgileri">
+        <div class="card-content">
+          <h2>Uçak Bilgileri</h2>
+          <p>Uçak hakkında ilginç bilgilerle eğlenin ve öğrenin!</p>
+        </div>
+      </div>
+
+      <div class="content-card" onclick="showInfo('bulmacalar')">
+        <img src="https://img.icons8.com/fluency/96/000000/puzzle.png" alt="Zeka Oyunları"> 
+        <div class="card-content">
+          <h2>Zeka Oyunları</h2>
+          <p>Zeka bulmacaları ve oyunlarla beyninizi çalıştırın!</p>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>✈️ Keyifli ve güvenli bir yolculuk dileriz! ✈️</p>
+    </footer>
+  </div>
+
+  <!-- Modal -->
+  <div id="infoModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeInfo()">&times;</span>
+      <p id="infoText">İçerik yükleniyor...</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
