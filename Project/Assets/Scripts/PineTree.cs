@@ -1,13 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
 
 public class PineTree : MonoBehaviour
 {
-    public TextMeshProUGUI starText; 
-    public List<TextMeshProUGUI> ballTexts; 
-    public UIManager uiManager; 
+    public TextMeshProUGUI starText;
+    public List<TextMeshProUGUI> ballTexts;
+    public UIManager uiManager;
 
     void Start()
     {
@@ -20,9 +19,9 @@ public class PineTree : MonoBehaviour
         starText.text = number.ToString();
 
         List<int> divisors = GetDivisors(number);
-        divisors.Sort((a, b) => b.CompareTo(a)); 
+        divisors.Sort((a, b) => b.CompareTo(a));
 
-        List<int> selectedDivisors = SelectRandomDivisors(divisors);
+        List<int> selectedDivisors = SelectRandomDivisors(divisors, number);
 
         HashSet<int> questionMarkIndices = new HashSet<int>();
         while (questionMarkIndices.Count < 2)
@@ -45,9 +44,9 @@ public class PineTree : MonoBehaviour
             }
         }
 
-        uiManager.Initialize(number, selectedDivisors);
+        uiManager.Initialize(number, selectedDivisors, ballTexts, questionMarkIndices);
     }
-
+    
     int GetRandomNumberWithSixDivisors()
     {
         int number;
@@ -69,15 +68,25 @@ public class PineTree : MonoBehaviour
         return divisors;
     }
 
-    List<int> SelectRandomDivisors(List<int> divisors)
+    List<int> SelectRandomDivisors(List<int> divisors, int number)
     {
         List<int> selectedDivisors = new List<int>();
-        for (int i = 0; i < 4; i++)
+
+        if (divisors.Contains(1)) selectedDivisors.Add(1);
+        if (divisors.Contains(2)) selectedDivisors.Add(2);
+        if (divisors.Contains(number)) selectedDivisors.Add(number);
+
+        while (selectedDivisors.Count < 4)
         {
-            selectedDivisors.Add(divisors[i]);
+            int randomIndex = Random.Range(0, divisors.Count);
+            int divisor = divisors[randomIndex];
+
+            if (!selectedDivisors.Contains(divisor))
+            {
+                selectedDivisors.Add(divisor);
+            }
         }
+
         return selectedDivisors;
     }
 }
-
-
