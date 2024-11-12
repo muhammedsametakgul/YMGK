@@ -1,66 +1,61 @@
 using UnityEngine;
 using System.Collections.Generic;
+using TMPro;
 
-public class WindmillSpawner : MonoBehaviour
+public class PinWheel : MonoBehaviour
 {
-    // Windmill prefab
     public GameObject windmillPrefab;
+    public List<Material> materialsList = new List<Material>(); 
+    public List<Transform> spawnPoints; 
 
-    // List of materials to assign
-    public List<Material> materialsList = new List<Material>();
-
-    // Array to store the created windmills
-    private GameObject[] windmills;
-
-    // List of predefined spawn points for windmills
-    public List<Transform> spawnPoints;
+    public GameObject[] windmills; // Diziyi public yapıyoruz
 
     void Start()
     {
-        // Check if there are exactly 6 spawn points
         if (spawnPoints.Count != 6)
         {
             Debug.LogError("Please assign exactly 6 spawn points.");
             return;
         }
 
-        // Initialize the array to store 6 windmills
         windmills = new GameObject[6];
 
-        // Define the 180-degree rotation on the Y-axis
         Quaternion rotation = Quaternion.Euler(0, 180, 0);
 
-        // Instantiate windmills at each predefined spawn point
         for (int i = 0; i < spawnPoints.Count; i++)
         {
-            // Instantiate windmill with 180 degrees rotation on the Y-axis
             GameObject windmill = Instantiate(windmillPrefab, spawnPoints[i].position, rotation, spawnPoints[i]);
-            windmill.transform.localScale = Vector3.one * 0.8f; // Adjust scale as needed
-
+            windmill.transform.localScale = Vector3.one * 0.8f; 
             windmills[i] = windmill;
+
+            TextMeshProUGUI textMeshPro = windmill.GetComponentInChildren<TextMeshProUGUI>();
+            if (textMeshPro != null)
+            {
+                textMeshPro.text = (i + 1).ToString(); 
+            }
+            else
+            {
+                Debug.LogWarning("TextMeshPro component not found in windmill prefab's Canvas.");
+            }
         }
 
-        // Check if there are enough materials to assign
         if (materialsList.Count < 3)
         {
             Debug.LogError("Please assign at least 3 materials in the materialsList.");
             return;
         }
 
-        // Randomly select two windmills to assign the same material
         int firstIndex = Random.Range(0, windmills.Length);
         int secondIndex;
         do
         {
             secondIndex = Random.Range(0, windmills.Length);
-        } while (secondIndex == firstIndex); // Ensure they are different
+        } while (secondIndex == firstIndex); 
 
-        // Assign the same material to the selected windmills' child objects
         Material sharedMaterial = materialsList[0];
         SetChildMaterial(windmills[firstIndex], sharedMaterial);
         SetChildMaterial(windmills[secondIndex], sharedMaterial);
 
-        // Assign different materials to the remaining windmills' child objects
         int materialIndex = 1;
         for (int i = 0; i < windmills.Length; i++)
         {
@@ -72,11 +67,9 @@ public class WindmillSpawner : MonoBehaviour
         }
     }
 
-    // Helper method to set the material of a child object's renderer
     void SetChildMaterial(GameObject windmill, Material material)
     {
-        // Assuming the child has a specific name or is the first child
-        Transform childTransform = windmill.transform.GetChild(0); // Get the first child
+        Transform childTransform = windmill.transform.GetChild(0); 
         if (childTransform != null)
         {
             Renderer childRenderer = childTransform.GetComponent<Renderer>();
@@ -94,4 +87,4 @@ public class WindmillSpawner : MonoBehaviour
             Debug.LogWarning("Child object not found.");
         }
     }
-}
+} 
