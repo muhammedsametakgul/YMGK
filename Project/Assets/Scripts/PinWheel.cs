@@ -5,10 +5,13 @@ using TMPro;
 public class PinWheel : MonoBehaviour
 {
     public GameObject windmillPrefab;
-    public List<Material> materialsList = new List<Material>(); 
-    public List<Transform> spawnPoints; 
+    public List<Material> materialsList = new List<Material>();
+    public List<Transform> spawnPoints;
 
-    public GameObject[] windmills; // Diziyi public yapıyoruz
+    public GameObject[] windmills;
+
+    public int sameMaterialIndex1; // Aynı materyale sahip birinci indeks
+    public int sameMaterialIndex2; // Aynı materyale sahip ikinci indeks
 
     void Start()
     {
@@ -25,13 +28,13 @@ public class PinWheel : MonoBehaviour
         for (int i = 0; i < spawnPoints.Count; i++)
         {
             GameObject windmill = Instantiate(windmillPrefab, spawnPoints[i].position, rotation, spawnPoints[i]);
-            windmill.transform.localScale = Vector3.one * 0.8f; 
+            windmill.transform.localScale = Vector3.one * 0.8f;
             windmills[i] = windmill;
 
             TextMeshProUGUI textMeshPro = windmill.GetComponentInChildren<TextMeshProUGUI>();
             if (textMeshPro != null)
             {
-                textMeshPro.text = (i + 1).ToString(); 
+                textMeshPro.text = (i + 1).ToString();
             }
             else
             {
@@ -45,21 +48,20 @@ public class PinWheel : MonoBehaviour
             return;
         }
 
-        int firstIndex = Random.Range(0, windmills.Length);
-        int secondIndex;
+        sameMaterialIndex1 = Random.Range(0, windmills.Length);
         do
         {
-            secondIndex = Random.Range(0, windmills.Length);
-        } while (secondIndex == firstIndex); 
+            sameMaterialIndex2 = Random.Range(0, windmills.Length);
+        } while (sameMaterialIndex2 == sameMaterialIndex1);
 
         Material sharedMaterial = materialsList[0];
-        SetChildMaterial(windmills[firstIndex], sharedMaterial);
-        SetChildMaterial(windmills[secondIndex], sharedMaterial);
+        SetChildMaterial(windmills[sameMaterialIndex1], sharedMaterial);
+        SetChildMaterial(windmills[sameMaterialIndex2], sharedMaterial);
 
         int materialIndex = 1;
         for (int i = 0; i < windmills.Length; i++)
         {
-            if (i != firstIndex && i != secondIndex)
+            if (i != sameMaterialIndex1 && i != sameMaterialIndex2)
             {
                 SetChildMaterial(windmills[i], materialsList[materialIndex]);
                 materialIndex++;
@@ -69,7 +71,7 @@ public class PinWheel : MonoBehaviour
 
     void SetChildMaterial(GameObject windmill, Material material)
     {
-        Transform childTransform = windmill.transform.GetChild(0); 
+        Transform childTransform = windmill.transform.GetChild(0);
         if (childTransform != null)
         {
             Renderer childRenderer = childTransform.GetComponent<Renderer>();
@@ -87,4 +89,4 @@ public class PinWheel : MonoBehaviour
             Debug.LogWarning("Child object not found.");
         }
     }
-} 
+}
