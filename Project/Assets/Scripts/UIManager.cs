@@ -29,48 +29,54 @@ public class UIManager : MonoBehaviour
     }
 
     public void CheckAnswer()
+{
+    string input = inputField.text.Trim(); 
+
+    Debug.Log("Kullanıcı Girişi: " + input); 
+
+    if (int.TryParse(input, out int userInput))
     {
-        if (int.TryParse(inputField.text, out int userInput))
+        if (correctGuesses.Contains(userInput))
         {
-            if (correctGuesses.Contains(userInput))
+            feedbackText.text = "Bu sayı zaten doğru olarak tahmin edildi.";
+        }
+        else if (starNumber % userInput == 0)
+        {
+            feedbackText.text = "Doğru! Girdiğiniz sayı yıldızdaki sayıyı tam bölebiliyor.";
+            correctGuesses.Add(userInput);
+
+            bool updated = UpdateQuestionMarkSlot(userInput);
+            if (!updated)
             {
-                feedbackText.text = "Bu sayı zaten doğru olarak tahmin edildi.";
-            }
-            else if (ballDivisors.Contains(userInput))
-            {
-                feedbackText.text = "Doğru! Girdiğiniz sayı mevcut toplardaki sayılardan biri.";
-                correctGuesses.Add(userInput);
-                UpdateQuestionMarkSlot(userInput);
-            }
-            else if (starNumber % userInput == 0)
-            {
-                feedbackText.text = "Doğru! Girdiğiniz sayı yıldızdaki sayıyı tam bölebiliyor.";
-                correctGuesses.Add(userInput);
-                UpdateQuestionMarkSlot(userInput);
-            }
-            else
-            {
-                feedbackText.text = "Yanlış! Girdiğiniz sayı yıldızdaki sayıyı tam bölemiyor.";
+                feedbackText.text = "Tüm soru işaretleri zaten güncellenmiş.";
             }
         }
         else
         {
-            feedbackText.text = "Lütfen geçerli bir sayı girin.";
+            feedbackText.text = "Yanlış! Girdiğiniz sayı yıldızdaki sayıyı tam bölemiyor.";
         }
 
         inputField.text = "";
     }
-
-    private void UpdateQuestionMarkSlot(int correctNumber)
+    else
     {
-        foreach (int index in questionMarkIndices)
+        feedbackText.text = "Lütfen geçerli bir sayı girin.";
+    }
+}
+
+private bool UpdateQuestionMarkSlot(int correctNumber)
+{
+    foreach (int index in questionMarkIndices)
+    {
+        if (ballTexts[index].text == "?")
         {
-            if (ballTexts[index].text == "?")
-            {
-                ballTexts[index].text = correctNumber.ToString();
-                questionMarkIndices.Remove(index);
-                break;
-            }
+            ballTexts[index].text = correctNumber.ToString();
+            questionMarkIndices.Remove(index);
+            return true;
         }
     }
+    return false; 
+}
+
+
 }
