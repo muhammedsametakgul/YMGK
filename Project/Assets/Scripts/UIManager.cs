@@ -42,7 +42,7 @@ public class UIManager : MonoBehaviour
         }
         else if (starNumber % userInput == 0)
         {
-            feedbackText.text = "Doğru! Girdiğiniz sayı yıldızdaki sayıyı tam bölebiliyor.";
+            feedbackText.text = "Doğru!";
             correctGuesses.Add(userInput);
 
             bool updated = UpdateQuestionMarkSlot(userInput);
@@ -53,7 +53,7 @@ public class UIManager : MonoBehaviour
         }
         else
         {
-            feedbackText.text = "Yanlış! Girdiğiniz sayı yıldızdaki sayıyı tam bölemiyor.";
+            feedbackText.text = "Yanlış!";
         }
 
         inputField.text = "";
