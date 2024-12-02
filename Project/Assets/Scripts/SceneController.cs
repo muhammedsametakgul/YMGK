@@ -3,19 +3,16 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
-    // Pinwheel sahnesini açan fonksiyon
     public void LoadPinwheelScene()
     {
-        SceneManager.LoadScene("PinwheelGame"); // Sahne adı "PinwheelScene"
+        SceneManager.LoadScene("PinwheelGame"); 
     }
 
-    // Pine Tree sahnesini açan fonksiyon
     public void LoadPineTreeScene()
     {
-        SceneManager.LoadScene("PinTreeGame"); // Sahne adı "PineTreeScene"
+        SceneManager.LoadScene("PinTreeGame"); 
     }
 
-    // Uygulamadan çıkış fonksiyonu
     public void QuitApplication()
     {
         Debug.Log("Uygulama kapatılıyor.");
