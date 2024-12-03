@@ -1945,6 +1945,8 @@ MonoBehaviour:
   inputField: {fileID: 2029036880}
   checkButton: {fileID: 1552887208}
   feedbackText: {fileID: 1824490846}
+  correctSound: {fileID: 8300000, guid: 6f32906ebda2622439d50037f3bab8f2, type: 3}
+  incorrectSound: {fileID: 8300000, guid: b9c207d525f1ae142a465e15e0afe332, type: 3}
 --- !u!114 &1459810561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2209,6 +2211,8 @@ MonoBehaviour:
   inputField2: {fileID: 0}
   resultText: {fileID: 0}
   checkButton: {fileID: 0}
+  correctSound: {fileID: 0}
+  incorrectSound: {fileID: 0}
 --- !u!1001 &1775216129
 PrefabInstance:
   m_ObjectHideFlags: 0
