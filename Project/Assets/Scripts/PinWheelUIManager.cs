@@ -11,9 +11,17 @@ public class PinWheelUIManager : MonoBehaviour
     public TMP_InputField inputField2;
     public TextMeshProUGUI resultText;
     public Button checkButton;
+    public AudioClip correctSound;  
+    public AudioClip incorrectSound;  
+    private AudioSource audioSource;  
 
     void Start()
     {
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        
         checkButton.onClick.AddListener(CheckMatch);
     }
 
@@ -49,14 +57,22 @@ public class PinWheelUIManager : MonoBehaviour
         index1 -= 1;
         index2 -= 1;
 
-        if ((index1 == pinWheel.sameMaterialIndex1 && index2 == pinWheel.sameMaterialIndex2) ||
+        if ((index1 == pinWheel.sameMaterialIndex1 && index2 == pinWheel.sameMaterialIndex2) || 
             (index1 == pinWheel.sameMaterialIndex2 && index2 == pinWheel.sameMaterialIndex1))
         {
             resultText.text = "Rüzgar Gülleri Aynı";
+            if (audioSource != null && correctSound != null)
+            {
+                audioSource.PlayOneShot(correctSound);
+            }
         }
         else
         {
             resultText.text = "Yanlış! Bu Rüzgar Gülleri Farklı";
+            if (audioSource != null && correctSound != null)
+            {
+                audioSource.PlayOneShot(incorrectSound);
+            }
         }
 
         pinWheel.CreateWindmills();
@@ -67,9 +83,15 @@ public class PinWheelUIManager : MonoBehaviour
         StartCoroutine(HideResultTextAfterDelay());
     }
 
+    void PlaySound(AudioClip clip)
+    {
+        audioSource.clip = clip;
+        audioSource.Play();
+    }
+
     IEnumerator HideResultTextAfterDelay()
     {
         yield return new WaitForSeconds(2f);
-        resultText.text = ""; 
+        resultText.text = "";
     }
 }

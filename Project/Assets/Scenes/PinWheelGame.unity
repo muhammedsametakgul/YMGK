@@ -1623,6 +1623,8 @@ MonoBehaviour:
   inputField2: {fileID: 681751795}
   resultText: {fileID: 759688480}
   checkButton: {fileID: 178041351}
+  correctSound: {fileID: 8300000, guid: 6f32906ebda2622439d50037f3bab8f2, type: 3}
+  incorrectSound: {fileID: 8300000, guid: b9c207d525f1ae142a465e15e0afe332, type: 3}
 --- !u!1 &911829086
 GameObject:
   m_ObjectHideFlags: 0

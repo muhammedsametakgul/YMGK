@@ -8,6 +8,9 @@ public class UIManager : MonoBehaviour
     public TMP_InputField inputField;
     public Button checkButton;
     public TextMeshProUGUI feedbackText;
+    public AudioClip correctSound;  
+    public AudioClip incorrectSound; 
+    private AudioSource audioSource;  
 
     private int starNumber;
     private List<int> ballDivisors;
@@ -17,6 +20,11 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
+         if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        
         checkButton.onClick.AddListener(CheckAnswer);
     }
 
@@ -48,6 +56,10 @@ public class UIManager : MonoBehaviour
             else if (starNumber % userInput == 0)
             {
                 feedbackText.text = "Doğru!";
+                if (audioSource != null && correctSound != null)
+            {
+                audioSource.PlayOneShot(correctSound);
+            }
                 correctGuesses.Add(userInput);
 
                 bool updated = UpdateQuestionMarkSlot(userInput);
@@ -59,6 +71,10 @@ public class UIManager : MonoBehaviour
             else
             {
                 feedbackText.text = "Yanlış!";
+                if (audioSource != null && correctSound != null)
+            {
+                audioSource.PlayOneShot(incorrectSound);
+            }
             }
 
             inputField.text = "";
