@@ -10,8 +10,8 @@ public class PinWheel : MonoBehaviour
 
     public GameObject[] windmills;
 
-    public int sameMaterialIndex1; // Aynı materyale sahip birinci indeks
-    public int sameMaterialIndex2; // Aynı materyale sahip ikinci indeks
+    public int sameMaterialIndex1; 
+    public int sameMaterialIndex2; 
 
     void Start()
     {
@@ -23,7 +23,18 @@ public class PinWheel : MonoBehaviour
 
         windmills = new GameObject[6];
 
+        CreateWindmills();
+    }
+
+    public void CreateWindmills()
+    {
         Quaternion rotation = Quaternion.Euler(0, 180, 0);
+
+        foreach (var windmill in windmills)
+        {
+            if (windmill != null)
+                Destroy(windmill);
+        }
 
         for (int i = 0; i < spawnPoints.Count; i++)
         {

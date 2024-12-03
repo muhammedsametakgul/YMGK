@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 
 public class PinWheelUIManager : MonoBehaviour
 {
@@ -21,9 +22,12 @@ public class PinWheelUIManager : MonoBehaviour
         string input1 = inputField1.text;
         string input2 = inputField2.text;
 
+        resultText.text = "";
+
         if (string.IsNullOrEmpty(input1) || string.IsNullOrEmpty(input2))
         {
             resultText.text = "Lütfen her iki giriş alanına da bir sayı girin.";
+            StartCoroutine(HideResultTextAfterDelay());
             return;
         }
 
@@ -31,12 +35,14 @@ public class PinWheelUIManager : MonoBehaviour
         if (!int.TryParse(input1, out index1) || !int.TryParse(input2, out index2))
         {
             resultText.text = "Lütfen geçerli sayılar girin.";
+            StartCoroutine(HideResultTextAfterDelay());
             return;
         }
 
         if (index1 < 1 || index1 > pinWheel.windmills.Length || index2 < 1 || index2 > pinWheel.windmills.Length)
         {
             resultText.text = "Girilen sayılar geçersiz. 1 ile " + pinWheel.windmills.Length + " arasında olmalı.";
+            StartCoroutine(HideResultTextAfterDelay());
             return;
         }
 
@@ -52,5 +58,18 @@ public class PinWheelUIManager : MonoBehaviour
         {
             resultText.text = "Yanlış! Bu Rüzgar Gülleri Farklı";
         }
+
+        pinWheel.CreateWindmills();
+
+        inputField1.text = "";
+        inputField2.text = "";
+
+        StartCoroutine(HideResultTextAfterDelay());
+    }
+
+    IEnumerator HideResultTextAfterDelay()
+    {
+        yield return new WaitForSeconds(2f);
+        resultText.text = ""; 
     }
 }
