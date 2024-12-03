@@ -26,57 +26,84 @@ public class UIManager : MonoBehaviour
         ballDivisors = new List<int>(divisors);
         this.ballTexts = ballTexts;
         this.questionMarkIndices = questionMarkIndices;
+        correctGuesses.Clear(); 
     }
 
     public void CheckAnswer()
-{
-    string input = inputField.text.Trim(); 
-
-    Debug.Log("Kullanıcı Girişi: " + input); 
-
-    if (int.TryParse(input, out int userInput))
     {
-        if (correctGuesses.Contains(userInput))
-        {
-            feedbackText.text = "Bu sayı zaten doğru olarak tahmin edildi.";
-        }
-        else if (starNumber % userInput == 0)
-        {
-            feedbackText.text = "Doğru!";
-            correctGuesses.Add(userInput);
+        string input = inputField.text.Trim(); 
 
-            bool updated = UpdateQuestionMarkSlot(userInput);
-            if (!updated)
+        Debug.Log("Kullanıcı Girişi: " + input); 
+
+        if (int.TryParse(input, out int userInput))
+        {
+            if (IsNumberAlreadyOnBalls(userInput))
             {
-                feedbackText.text = "Tüm soru işaretleri zaten güncellenmiş.";
+                feedbackText.text = "Bu sayı zaten toplarda var!";
             }
+            else if (correctGuesses.Contains(userInput))
+            {
+                feedbackText.text = "Bu sayı zaten doğru olarak tahmin edildi.";
+            }
+            else if (starNumber % userInput == 0)
+            {
+                feedbackText.text = "Doğru!";
+                correctGuesses.Add(userInput);
+
+                bool updated = UpdateQuestionMarkSlot(userInput);
+                if (!updated)
+                {
+                    feedbackText.text = "Tüm soru işaretleri zaten güncellenmiş.";
+                }
+            }
+            else
+            {
+                feedbackText.text = "Yanlış!";
+            }
+
+            inputField.text = "";
         }
         else
         {
-            feedbackText.text = "Yanlış!";
+            feedbackText.text = "Lütfen geçerli bir sayı girin.";
         }
 
-        inputField.text = "";
-    }
-    else
-    {
-        feedbackText.text = "Lütfen geçerli bir sayı girin.";
-    }
-}
-
-private bool UpdateQuestionMarkSlot(int correctNumber)
-{
-    foreach (int index in questionMarkIndices)
-    {
-        if (ballTexts[index].text == "?")
+        if (correctGuesses.Count == 2)
         {
-            ballTexts[index].text = correctNumber.ToString();
-            questionMarkIndices.Remove(index);
-            return true;
+            feedbackText.text = "Bildiniz!";
+            Invoke("StartNewGame", 2f); 
         }
     }
-    return false; 
-}
 
+    private bool IsNumberAlreadyOnBalls(int number)
+    {
+        foreach (var ballText in ballTexts)
+        {
+            if (ballText.text == number.ToString())
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 
+    private bool UpdateQuestionMarkSlot(int correctNumber)
+    {
+        foreach (int index in questionMarkIndices)
+        {
+            if (ballTexts[index].text == "?")
+            {
+                ballTexts[index].text = correctNumber.ToString();
+                questionMarkIndices.Remove(index);
+                return true;
+            }
+        }
+        return false; 
+    }
+
+    private void StartNewGame()
+    {
+        FindObjectOfType<PineTree>().SetDivisors();
+        feedbackText.text = "";  
+    }
 }

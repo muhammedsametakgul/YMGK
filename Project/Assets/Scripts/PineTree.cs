@@ -13,7 +13,7 @@ public class PineTree : MonoBehaviour
         SetDivisors();
     }
 
-    void SetDivisors()
+    public void SetDivisors()
     {
         int number = GetRandomNumberWithSixDivisors();
         starText.text = number.ToString();
