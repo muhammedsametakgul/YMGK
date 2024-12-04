@@ -34,7 +34,7 @@ public class PinWheelUIManager : MonoBehaviour
 
         if (string.IsNullOrEmpty(input1) || string.IsNullOrEmpty(input2))
         {
-            resultText.text = "Lütfen her iki giriş alanına da bir sayı girin.";
+            resultText.text = "Lütfen sayı giriniz";
             StartCoroutine(HideResultTextAfterDelay());
             return;
         }
@@ -49,7 +49,7 @@ public class PinWheelUIManager : MonoBehaviour
 
         if (index1 < 1 || index1 > pinWheel.windmills.Length || index2 < 1 || index2 > pinWheel.windmills.Length)
         {
-            resultText.text = "Girilen sayılar geçersiz. 1 ile " + pinWheel.windmills.Length + " arasında olmalı.";
+            //resultText.text = "Girilen sayılar geçersiz. 1 ile " + pinWheel.windmills.Length + " arasında olmalı.";
             StartCoroutine(HideResultTextAfterDelay());
             return;
         }
