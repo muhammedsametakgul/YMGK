@@ -14,13 +14,13 @@ Unity AR Project with Vuforia
 Proje görevleri ve ilerlemesi Trello üzerinde takip edilmektedir: [Proje Trello Panosu](https://trello.com/b/jzWtBNmz/ymgk)
 
 #### **Dokümantasyon Linki**
-Proje için detaylı dokümantasyonu burada bulabilirsiniz: [Dokümantasyon](#)
+Proje için detaylı dokümantasyonu burada bulabilirsiniz: [Dokümantasyon](https://drive.google.com/drive/u/0/folders/18Av5snbUFKF8PS9uWRBsYLTcO8ZAqIJj)
 
 #### **YouTube Video Linki**
-Proje demosunu YouTube'da izleyebilirsiniz: [YouTube Video](#)
+Proje demosunu YouTube'da izleyebilirsiniz: [YouTube Video](https://youtu.be/-bQ5u_fxDDk)
 
 #### **WebSite Linki**
-[WebSite](https://muhammedsametakgul.github.io/YMGK/)
+Website için linke tıklayabilirsiniz: [WebSite](https://muhammedsametakgul.github.io/YMGK/)
 
 ---
 
@@ -40,10 +40,10 @@ Unity AR Project with Vuforia
 Project tasks and progress are tracked on Trello: [Project Trello Board](https://trello.com/b/jzWtBNmz/ymgk)
 
 #### **Documentation Link**
-You can find the detailed documentation for the project here: [Documentation](#)
+You can find the detailed documentation for the project here: [Documentation](https://drive.google.com/drive/u/0/folders/18Av5snbUFKF8PS9uWRBsYLTcO8ZAqIJj)
 
 #### **YouTube Video Link**
-Watch the project demo on YouTube: [YouTube Video](#)
+Watch the project demo on YouTube: [YouTube Video](https://youtu.be/-bQ5u_fxDDk)
 
 #### **Website Link**
 [WebSite](https://muhammedsametakgul.github.io/YMGK/)
