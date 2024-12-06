@@ -6,15 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/PinWheelGame.unity
-    guid: c257f2d03b8b4674db8aaef434fa4a8d
-  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 1d05f8da8c183d847932c4625e351766
   - enabled: 1
+    path: Assets/Scenes/PinWheelGame.unity
+    guid: c257f2d03b8b4674db8aaef434fa4a8d
+  - enabled: 1
     path: Assets/Scenes/PinTreeGame.unity
     guid: 9d96590eb677dc64aa5a43a645c3c597
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}
